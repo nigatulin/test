@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontello.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Свадьба</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--Drag & Drop-->
+    <script> 
+		$(document).ready(
+			function(e){
+				var form = $('#myform');
+				var message = $('#myform_status');
+				form.on('submit',function(){
+					var formData = new FormData();
+					if(($('#myfile')[0].files).length !=0){
+						$.each($('#myfile')[0].files, function(i, file){
+							formData.append("file[" + i + "]", file);
+						});
+					}
+					else{
+						message.text('Нужно прикрепить фотграфии');
+						return false;
+					}
+					$.ajax({
+						type:"POST",
+						url:"ajax.php",
+						cache:false,
+						dataType:"json",
+						contentType: false,
+						processData: false,								
+						data: formData,
+						beforeSend: function(){
+							console.log('Запрос начат');
+							message.text('Запрос начат');
+							form.find('input').prop("disabled",true); 
+						},
+						success: function(data){
+							console.log('А тут отработать если ок');
+							if(data.status == 'ok'){
+								$('#myfile').val('');
+								message.text('Файлы загружены');
+							}
+							else{
+								message.text('Что-то не так с загрузкой');
+							}
+						},
+						complete: function(data){
+							console.log('Запрос закончен');
+							form.find('input').prop("disabled",false);
+							
+						},
+						error: function(xhr, ajaxOptions, thrownError){
+							console.log(thrownError);
+							message.html('Была ошибка');
+						}
+					});
+					return false;
+				});
+			}
+		);
+			
+	</script>
+
+</head>
+<body>
+    <!--<header>   
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="hi text-center color1 mb-0">Сергей</h2>
+                    <h2 class="hi_end text-center color1" >и</h2>
+                    <h2 class="hi text-center color1 mt-0">Елена</h2>
+                    <h2 class="data text-center color1">18.06.2022</h2>
+                    <div class="container">
+                        <div class="hi_text row justify-content-end">
+                            <div class="col-8 mt-5 text-center color1">
+                                Наша свадьба без вас не будет такой счастливой, уютной и веселой!
+                         Приглашаем отметить этот день вместе с нами!
+                            </div>
+                        </div>
+                    </div>
+                   <div class="itd_play" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <itd class="itd_triangle"></itd>
+                    </div>
+                    <a href="#footer" class="btn btn-itd btn-lg text-uppercase mt-5">приглашаем вас</a>
+                </div>
+            </div>
+        </div>
+    </header>-->
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="hi_hi col-12">
+                    <h2 data-aos="zoom-in" data-aos-duration="2000" class="hi text-center color1 mb-0">Сергей</h2>
+                    <h2 data-aos="zoom-in" data-aos-duration="2000" class="hi_end text-center color1" >и</h2>
+                    <h2 data-aos="zoom-in" data-aos-duration="2000" class="hi text-center color1 mt-0">Елена</h2>
+                    <h2 data-aos="fade-up"
+                    data-aos-duration="2000" class="data text-center color1">18.06.2022</h2>
+                </div>
+                <div class="container">
+                    <div class="hi_text row justify-content-end">
+                        <div class="col-8 mt-5 mb-5 text-center color1">
+                            Наша свадьба без вас не будет такой счастливой, уютной и веселой!
+                     Приглашаем отметить этот день вместе с нами!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container col-md-12 col-xl-6">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold fs-1 color1 mt-5 mb-5 ">Программа дня</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-md-12 col-sm-12">
+                    <div data-aos="fade-right" class="about_circle"><img src="img/car.png"></div>
+                    <h5 data-aos="fade-right" class="text-center color1 fs-3">17:00 Сбор гостей</h5>
+                    <div class="line"></div>
+                </div>
+                <div class="two col-xl-3 col-md-12 col-sm-12">
+                    <div data-aos="fade-left" class="about_circle"><img src="img/champagne.png"></div>
+                    <h5 data-aos="fade-left" class="text-center color1 fs-3">17:30 Фуршет</h5>
+                    <div class="line"></div>
+                </div>
+                <div class="col-xl-3 col-md-12 col-sm-12">
+                    <div data-aos="fade-right" class="about_circle"><img src="img/couple.png"></div>
+                    <h5 data-aos="fade-right" class="text-center color1 fs-3">18:30 Выездная церемония бракосочетания</h5>
+                    <div class="line"></div>
+                </div>
+                <div class="col-xl-3 col-md-12 col-sm-12 mb-5">
+                    <div data-aos="fade-left" class="about_circle"><img src="img/dinner.png"></div>
+                    <h5 data-aos="fade-left" class="text-center color1 fs-3">19:00 - 23:00 Банкет</h5>
+                    <div class="line"></div>
+                </div>
+            </div> 
+        </div>
+
+        <!-- Button trigger modal 2 -->
+        <div class="conteiner">
+            <div class="row">
+                <div class="d-grid gap-2 col-6 col-lg-2  mx-auto mt-3 mb-5">
+                    <button type="button" class="btn  btn-success fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                        План рассадки
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog mmodal-dialog-centered text-center modal-dialog-scrollable modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title fw-bold fs-1" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="img/table.jpg" alt="">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--When
+    <section class="section_when">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center text-uppercase text-light fw-bold mb-0 fs-1">наша</h2>
+                    <h2 class="text-center text-uppercase text-light fw-bold mt-0 fs-1">свадьба</h2>
+                </div>
+            When1            
+                <div class="rowWhen row d-md-none mb-5">
+                    <div class="col-md-4 col-sm-12">
+                        <h2 class="text-start text-uppercase fw-bold ms-3 color1">когда</h2>
+                        <p><span class="spanWhen text-start ms-3 color1 ">18 июня, суббота, 2022</span></p>
+                        <p><span class="spanWhen text-start ms-3 color1 ">Регистрация в 15:00</span></p>
+                        <p><span class="spanWhen text-start ms-3 color1 ">Торжество 17:00</span></p>
+                    </div>
+                            <div class="col-sm-12 col-xs-12  d-md-none line1"></div>
+                            
+
+                    <div class="col-md-4 col-sm-12 text-end">
+                        <h2 class="text-uppercase fw-bold ms-3 color1">где</h2>
+                        <p><span class="spanWhen ms-3 color1 ">Дворец бракосочетания №1</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">ул. Арбат, 1а, Москва</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Россия</span></p>    
+                    </div>
+                </div>
+
+            When2               
+            <div class="container d-none d-md-block"> 
+                <div class="rowWhen2 row mt-3">
+                    <div class="col text-end me-5">
+                        <h2 class=" text-uppercase fw-bold ms-3 color1">когда</h2>
+                        <p><span class="spanWhen  ms-3 color1 ">18 июня, суббота, 2022</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Регистрация в 15:00</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Торжество 17:00</span></p>
+                    </div>
+
+                        <div class="col-1 orange-line"></div>
+
+                    <div class="col text-start">
+                            <h2 class="text-uppercase fw-bold ms-3 color1">где</h2>
+                            <p><span class="spanWhen ms-3 color1 ">Дворец бракосочетания №1</span></p>
+                            <p><span class="spanWhen ms-3 color1 ">ул. Арбат, 1а, Москва</span></p>
+                            <p><span class="spanWhen ms-3 color1 ">Россия</span></p>    
+                    </div>   
+                </div>
+            </div>        
+            </div>
+        </div>
+    </section>-->
+
+    <section class="ho_toGet">
+        <div class="container">
+            <div class="row gx-0">
+                <div class="col-12">
+                    <h2 class="text-center fw-bold mt-5 mb-0 fs-1 color1">Место</h2>
+                    <h2 class="text-center color1 fw-bold mt-0 fs-1">проведения</h2>
+                    <p class="text-center mt-4 fs-3 color1">Москва, ТиНАО д. Овечкино, 7 загородный клуб Fisherix, беседка №15</p>
+                    <h2 class="text-center mt-5 fw-bold color1 fw-bold mb-0 fs-1">Как добраться</h2>
+                    <p class="text-center mt-4 fs-3 color1">Вы доберетесь до Fisherix за час езды от МКАД по Варшавскому или Калажскому шоссе. Ориентир - деревня Овечкино и большой пруд, на берегу которого и состоится наша свадьба:)</p>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5b4e173abfad1669339cfb970837f9d5ee1f2b0382a5602622b1c5bad6dae8d3&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=false"></script>
+
+                </div>
+
+                
+                <!-- Button trigger modal -->
+                <div class="d-grid gap-2 col-6 col-lg-2 mx-auto mt-5">
+                    <button type="button" class="btn  btn-success fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Схема территории
+                    </button>
+                </div>
+                
+
+
+                <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog mmodal-dialog-centered text-center modal-dialog-scrollable modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title fw-bold fs-1" id="exampleModalLabel">Схема территории</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="img/photo.jpg" alt="">
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                      
+
+
+                <p class="mt-5 mb-0 fs-3 text-center color1">Для желающих остаться на ночь загородный клуб Fisherix предлагает варианты для размещения.
+                    Посмотреть их можно <a class="color1" href="https://fisherix.ru/booking?date=2022-06-18&nights=1&adults=1">здесь</a>.
+                </p>
+                <p class="mb-0 fs-3 text-center color1">В бронировании вам поможет наша подруга Мария.</p>
+
+                <li class="whatsapp mb-5">
+                    
+                    <a href="https://wa.me/+79163749001" class="multibutton_icon">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52 52" style="enable-background:new 0 0 52 52;" xml:space="preserve">
+                            <g>
+                            <g>
+                            <path d="M26,0C11.663,0,0,11.663,0,26c0,4.891,1.359,9.639,3.937,13.762C2.91,43.36,1.055,50.166,1.035,50.237
+                            c-0.096,0.352,0.007,0.728,0.27,0.981c0.263,0.253,0.643,0.343,0.989,0.237L12.6,48.285C16.637,50.717,21.26,52,26,52
+                            c14.337,0,26-11.663,26-26S40.337,0,26,0z M26,50c-4.519,0-8.921-1.263-12.731-3.651c-0.161-0.101-0.346-0.152-0.531-0.152
+                            c-0.099,0-0.198,0.015-0.294,0.044l-8.999,2.77c0.661-2.413,1.849-6.729,2.538-9.13c0.08-0.278,0.035-0.578-0.122-0.821
+                            C3.335,35.173,2,30.657,2,26C2,12.767,12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z"></path>
+                            <path d="M42.985,32.126c-1.846-1.025-3.418-2.053-4.565-2.803c-0.876-0.572-1.509-0.985-1.973-1.218
+                            c-1.297-0.647-2.28-0.19-2.654,0.188c-0.047,0.047-0.089,0.098-0.125,0.152c-1.347,2.021-3.106,3.954-3.621,4.058
+                            c-0.595-0.093-3.38-1.676-6.148-3.981c-2.826-2.355-4.604-4.61-4.865-6.146C20.847,20.51,21.5,19.336,21.5,18
+                            c0-1.377-3.212-7.126-3.793-7.707c-0.583-0.582-1.896-0.673-3.903-0.273c-0.193,0.039-0.371,0.134-0.511,0.273
+                            c-0.243,0.243-5.929,6.04-3.227,13.066c2.966,7.711,10.579,16.674,20.285,18.13c1.103,0.165,2.137,0.247,3.105,0.247
+                            c5.71,0,9.08-2.873,10.029-8.572C43.556,32.747,43.355,32.331,42.985,32.126z M30.648,39.511
+                            c-10.264-1.539-16.729-11.708-18.715-16.87c-1.97-5.12,1.663-9.685,2.575-10.717c0.742-0.126,1.523-0.179,1.849-0.128
+                            c0.681,0.947,3.039,5.402,3.143,6.204c0,0.525-0.171,1.256-2.207,3.293C17.105,21.48,17,21.734,17,22c0,5.236,11.044,12.5,13,12.5
+                            c1.701,0,3.919-2.859,5.182-4.722c0.073,0.003,0.196,0.028,0.371,0.116c0.36,0.181,0.984,0.588,1.773,1.104
+                            c1.042,0.681,2.426,1.585,4.06,2.522C40.644,37.09,38.57,40.701,30.648,39.511z"></path>
+                            </g>
+                            </g>
+                            </svg>
+                    </a>
+                </li>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="dress">
+        <div class="container">   
+            <div class="row justify-content-center">
+               <div class="col-md-12 col-xl-6">
+                   <h2 class="text-center color1 fw-bold mt-5 fs-1">Dress Code </h2>
+                   <div class="row dress_row">
+                        <div class="col">
+                            <div data-aos="flip-left"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="2000" class="dress_circle1"><i class="icom-groupe"></i></div>
+                        </div>
+                        <div class="col">
+                            <div data-aos="flip-left"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="2000" data-aos-delay="150" class="dress_circle2"><i class="icom-groupe"></i></div>
+                        </div>
+                        <div class="col">
+                            <div data-aos="flip-left"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="2000"  data-aos-delay="250" class="dress_circle3"><i class="icom-groupe"></i></div>
+                        </div>
+                        <div class="col">
+                            <div data-aos="flip-left"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="2000" data-aos-delay="350" class="dress_circle4"><i class="icom-groupe"></i></div>
+                        </div>
+                        <div class="col">
+                            <div data-aos="flip-left"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="2000" data-aos-delay="450" class="dress_circle5"><i class="icom-groupe"></i></div>
+                        </div>
+                   </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-center mt-3 fs-3 color1 ">Наше мероприятие планируется в формате свадебной вечеринки.
+                                Поэтому мы будем рады, если вы будете чувствовать себя максимально комфортно и выберите стиль casual
+                                в цветовой палитре нашего мероприятия.</p>
+                            <p class="text-center mt-3 fs-3 color1">А туфли замените на кеды:)</p>
+                            <p class="text-center mt-5 mb-5 fs-5 color1">P.S. Вместо букета цветов нам будет приятно получить бутылку вина для нашей коллекции:)</p>
+                        </div> 
+                    </div>
+                </div>     
+           </div>
+        </div>
+    </section>
+
+    
+   
+    
+   
+
+    
+    <!-- <section class="section_when">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    
+                    <h2 class="text-center color1 fw-bold mt-0 fs-1">Dress Code </h2>
+                </div>
+            When1            
+                <div class="rowWhen row d-md-none mb-5">
+                    <div class="col-md-4 col-sm-12">
+                        
+                        <p><span class="text-center ms-3 fs-5 color1 ">Наше мероприятие планируется в формате свадебной вечеринки.
+                            Поэтому мы будем рады, если вы будете чувствовать себя максимально комфортно и выберите стиль casual
+                            в цветовой палитре нашего мероприятия.
+                        </span></p>
+                        <p class="mt-3 fs-3"> А туфли замените на кеды:)</p>
+                        <p class="mt-5 fs-3"> P.S. Вместо букета цветов нам будет приятно получить бутылку вина для нашей коллекции)))</p>
+                        
+                    </div>
+                           <div class="col-sm-12 col-xs-12  d-md-none line1"></div>
+                            
+
+                    <div class="col-md-4 col-sm-12 text-end">
+                        <h2 class="text-uppercase fw-bold ms-3 color1">где</h2>
+                        <p><span class="spanWhen ms-3 color1 ">Дворец бракосочетания №1</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">ул. Арбат, 1а, Москва</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Россия</span></p>    
+                    </div>
+                </div>
+
+            When2              
+            <div class="container d-none d-md-block"> 
+                <div class="rowWhen2 row mt-3">
+                    <div class="col text-end me-5">
+                        <h2 class=" text-uppercase fw-bold ms-3 color1">когда</h2>
+                        <p><span class="spanWhen  ms-3 color1 ">18 июня, суббота, 2022</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Регистрация в 15:00</span></p>
+                        <p><span class="spanWhen ms-3 color1 ">Торжество 17:00</span></p>
+                    </div>
+
+                        <div class="col-1 orange-line"></div>
+
+                    <div class="col text-start">
+                            <h2 class="text-uppercase fw-bold ms-3 color1">где</h2>
+                            <p><span class="spanWhen ms-3 color1 ">Дворец бракосочетания №1</span></p>
+                            <p><span class="spanWhen ms-3 color1 ">ул. Арбат, 1а, Москва</span></p>
+                            <p><span class="spanWhen ms-3 color1 ">Россия</span></p>    
+                    </div>   
+                </div>
+            </div>    
+            </div>
+        </div>
+    </section> -->
+
+            <!--Обратная связь-->
+
+    <section class="mail">        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="right-side text-center">
+                    <div class="topic-text fw-bold mt-5 fs-1 color1">Просим Вас подтвердить</div>
+                    <div class="topic-text fw-bold fs-1 color1">своё присутствие</div>
+                    <p class="topic-text fw-bold mb-3 fs-1 color1">до  24.04.2022</p>
+                  <p class="mb-0 fs-3 color1">
+                     Нам будет очень приятно, если самые близкие для нас люди будут рядом в этот день!
+                  </p>
+                  <p class=" fs-3 color1"></p>
+                </div>
+                        <div class="box col-sm-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="text-center mt-3">
+                                <form action="send_mail.php" name="form" method="POST">
+                                    <div class="input-box">
+                                      <input
+                                        type="text"
+                                        placeholder="Ваше имя"
+                                        name="name"
+                                        id="name"
+                                        data-reg="[а-яА-ЯёЁa-zA-Z]+?[а-яА-ЯёЁa-zA-Z]+$"
+                                      />
+                                      <p class="fs-5 fw-bold color1">+ укажите имя Вашего спутника</p>
+                                    </div>
+                                    
+                                    <div class="input-box message-box mb-0">
+                                      <textarea placeholder="Сообщение" name="message"></textarea>
+                                    </div>
+                                    <div class="button mt-3">
+                                        <input type="submit" id="button" value="Отправить" />
+                                     </div>
+                                    <!--<p class="fw-bold color1">И лучше бы Вам это сделать</p>-->   
+                                </form>
+                                <p class="fs-5 mt-5 fw-bold color1">Для нашего праздника понадобятся ваши фото. Просим загрузить их в форму ниже.</p>
+                            </div>
+                        </div>
+
+                        <!--Drag & Drop-->
+                        <div class="container drag_and_drop text-center " id="container">
+                            <form id="myform" method="POST" enctype="multipart/form-data" >
+                                
+                                    <div class="row">
+                                        <input type="file" name="myfile" id="myfile" multiple="multiple">
+                                        <div id="myform_status"></div>
+                                    </div>
+                                
+                                <input class="btn btn-success" type="submit" name="drag">
+                            </form>  
+                        </div>
+
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <!--<h2 class="text-center mt-5 color1 fs-3">#SergeyAndElena</h2>-->
+                                    <h2 class="text-center color1 mt-5 fs-6">2022 Сергей и Елена.</h2>
+                                    <h2 class="text-center mb-3 color1 fs-6 mt-0">Сайт создан мной :)</h2>
+                                </div>
+                            </div>
+                        </div>               
+            </div>
+        </div>
+        
+    </section>
+    
+    
+   
+    
+
+
+   <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- JavaScript and dependencies -->
+  <script src="app.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+</html>

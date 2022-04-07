@@ -1,0 +1,334 @@
+@font-face {
+    font-family:zeferino;
+    src: url("../font/zeferinoone.ttf");
+}
+@font-face {
+    font-family: Technical;
+    src: url("../font/ofont.ru_TechnicalDi.ttf");
+}
+
+
+:root {
+    --color1: #1e5930;
+    --color2: #D6BB6E;
+}
+
+
+#hero {
+    overflow:hidden;
+    width: 100%;
+    height: 100%;
+    background: url("../img/intro2.jpg") center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.hi_hi {
+    margin-top: 8rem;
+   
+}
+
+.hi {
+    font-size: 100px;
+    font-family: zeferino;
+}
+.hi_text{
+    font-size: 19px;
+    font-family: Technical;
+}
+.hi_end {
+    margin-top: -30px;
+    margin-bottom: -30px;
+    font-size: 100px;
+    font-family: zeferino;
+}
+.data {
+    font-size: 50px;
+    font-family: zeferino;
+}
+  
+
+
+/* history */
+.about {
+    overflow:hidden;
+    background-color: #faf2e8;
+    font-family: Technical;
+}
+.about h5 {
+    margin-bottom: 4px;
+}
+.about i {
+    font-size: 25px;
+    color: var(--color1);
+}
+.about_circle {
+    margin: 0 auto 15px;
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--color1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about img {
+    color: var(--color1);
+}
+.line {
+    
+    width: 100px;
+    height: 2px;
+    background-color: var(--color1);
+    margin: 4px auto 15px;
+}
+
+
+
+
+/* dress code */
+.dress {
+    overflow:hidden;
+    background-color: #faf2e8;
+}
+.dress_row {
+    --bs-gutter-x: -6rem;
+}
+.dress_circle1 {
+    margin: 30px auto 15px;
+    width: 50px;
+    height: 50px;
+    /*border: 3px solid var(--color2);*/
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ce988c;
+}
+.dress_circle2 {
+    margin: 30px auto 15px;
+    width: 50px;
+    height: 50px;
+    /*border: 3px solid var(--color2);*/
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccab98;
+}
+.dress_circle3 {
+    margin: 30px auto 15px;
+    width: 50px;
+    height: 50px;
+    /*border: 3px solid var(--color2);*/
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #896952;
+}
+.dress_circle4 {
+    margin: 30px auto 15px;
+    width: 50px;
+    height: 50px;
+    /*border: 3px solid var(--color2);*/
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bacccc;
+}
+.dress_circle5 {
+    margin: 30px auto 15px;
+    width: 50px;
+    height: 50px;
+    /*border: 3px solid var(--color2);*/
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5d6d62;
+}
+
+
+
+ .ho_toGet {
+    overflow:hidden;
+    width: 100%;
+    
+    background: url("../img/intro2.jpg") center no-repeat;
+    background-size: cover;
+    position: relative;    
+   /* padding: 200px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /*height: 100vh;
+  
+    background: url("../img/intro2.jpg") center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-attachment: fixed;*/
+ }
+
+ .ho_toGet {
+    font-family: Technical;
+ }
+
+ 
+
+ /* Modal open*/
+ 
+ .modal-body img {
+     width: 100%;
+     height: auto;
+ }
+ @media screen and (min-width:768px) and (max-width: 1942px){
+    .modal-body img {
+        width: auto;
+        height: auto;
+    }
+     
+ }
+ 
+ .whatsapp {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+ .whatsapp .multibutton_icon{
+     background: #30d64f;
+ }
+ .multibutton_icon {
+     width: 35px;
+     height: 35px;
+     border-radius: 30%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-left: 10px;
+ }
+ .multibutton_icon svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+ }
+ .multibutton_title {
+     font-size: 12px;
+     font-family: Technical;
+ }
+
+ /*Dress Code*/
+ .dress p {
+     font-family: Technical;
+ }
+ .dress h2 {
+     font-family: Technical;
+
+ }
+
+/*mail*/
+.mail {
+    overflow:hidden;
+    width: 100%;
+    
+    background: url("../img/intro2.jpg") center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.right-side {
+    font-family: Technical;
+}
+.mail label {
+    font-family: Technical;
+}
+.box {
+    font-family: Technical;
+}
+
+.input-box {
+    height: 50px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .input-box input,
+  .input-box textarea {
+    height: 100%;
+    width: 100%;
+    border: 2px solid #777;
+    border-radius: 5px;
+    background: #eef5f2;
+    padding: 0 20px;
+    margin-bottom: 2px;
+  }
+  .message-box {
+    min-height: 110px;
+  }
+
+  .button {
+    display: inline-block;
+  }
+  
+  .button input[type="submit"] {
+    color: #fff;
+    font-size: 18px;
+    background: #198754;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    transition: 0.2s;
+  }
+  
+  .button input[type="submit"]:hover {
+    background: rgb(27, 128, 34);
+  }
+
+  /*Drag & Drop*/
+  .drag_and_drop {
+    display: block;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-family: Technical;
+  }
+  form .row{
+    display: block;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background: #eef5f2;
+    border:2px dashed #777;
+    border-radius: 7px;
+    padding:10px;
+    margin: 20px;
+}
+form .btn {
+    
+    color: #fff;
+    font-size: 18px;
+    background: #198754;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 7px;
+    transition: 0.2s;
+  }
+    
+
+#myform_status{
+    margin-top:1em;
+    font-size:2em;
+}
+
+
+
+/* Цвет */
+.color1 {
+    color: var(--color1)
+}
+.color2 {
+    color: var(--color2)
+}
